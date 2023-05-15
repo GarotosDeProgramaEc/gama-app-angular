@@ -1,0 +1,43 @@
+<div class="component-header">
+  <h2>Policiais</h2>
+</div>
+
+<div class="container">
+
+  <div class="btn-header mb-4">
+    <button (click)="new()" class="btn-primary btn">Adicionar</button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Sobrenome</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Açoes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cop of cops; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{cop.firstName}}
+      </td>
+      <td>{{cop.lastName}}</td>
+      <td>{{cop.email}}</td>
+      <td>
+        <button type="button" class="btn btn-primary"><fa-icon icon="eye"></fa-icon></button>
+        <button type="button" class="btn btn-success"><fa-icon icon="edit"></fa-icon></button>
+        <button type="button" class="btn btn-danger"><fa-icon icon="trash-alt"></fa-icon></button>
+      </td>
+    </tr>
+
+    </tbody>
+
+  </table>
+  <p *ngIf="!cops?.length">
+    <ngb-alert [dismissible]="false">
+      <strong>Não há dados cadastrados</strong>
+    </ngb-alert>
+  </p>
+</div>

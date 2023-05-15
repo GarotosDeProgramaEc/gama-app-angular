@@ -1,0 +1,34 @@
+<div class="component-header">
+  <h2>Ocorrências</h2>
+</div>
+
+<div class="container">
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ocorrência</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Urgência</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let country of occurrences; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        teste
+      </td>
+      <td>teste</td>
+      <td>teste</td>
+    </tr>
+
+    </tbody>
+
+  </table>
+  <p *ngIf="!occurrences?.length">
+    <ngb-alert [dismissible]="false">
+      <strong>Não há dados cadastrados</strong>
+    </ngb-alert>
+  </p>
+</div>
