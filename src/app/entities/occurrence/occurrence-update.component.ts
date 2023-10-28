@@ -1,17 +1,17 @@
 import {Component, ViewChild} from '@angular/core';
 import {FormBuilder, NgForm, Validators} from "@angular/forms";
-import {User} from "../model/user.model";
-import {UserService} from "../../service/user.service";
+import {OccurrenceService} from "../../service/occurrence.service";
 import {Router} from "@angular/router";
+import {User} from "../model/user.model";
 
 @Component({
-  selector: 'app-user-update',
-  templateUrl: './user-update.component.html',
-  styleUrls: ['./user.component.scss']
+  selector: 'app-occurrence-update',
+  templateUrl: './occurrence-update.component.html',
+  styleUrls: ['./occurrence.component.scss']
 })
-export class UserUpdateComponent {
+export class OccurrenceUpdateComponent {
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+  constructor(private fb: FormBuilder, private occurrenceService: OccurrenceService, private router: Router) {
   }
 
   editForm = this.fb.group({
@@ -28,12 +28,13 @@ export class UserUpdateComponent {
 
 
   create(): void {
-    const user = {
+    const occurrence = {
       ...this.editForm.value
     } as User
 
-    this.userService.create(user).subscribe(res => {
-      this.router.navigate(['users'])
+    this.occurrenceService.create(occurrence).subscribe(res => {
+      this.router.navigate(['occurrences'])
+
     })
   }
 }

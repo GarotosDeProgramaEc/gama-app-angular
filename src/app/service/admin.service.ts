@@ -7,17 +7,17 @@ import {ToastrService} from "ngx-toastr";
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends ApiService<User> {
+export class AdminService extends ApiService<User> {
 
   constructor(http: HttpClient, toastr: ToastrService) {
     super(http, toastr);
   }
 
   protected getPath(): string {
-    return '';
+    return 'admin';
   }
 
   protected getRole(): string {
-    return 'Citzen';
+    return 'Admin';
   }
 }

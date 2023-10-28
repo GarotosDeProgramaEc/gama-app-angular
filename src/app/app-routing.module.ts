@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {sidebarRoute} from "./entities/sidebar/sidebar.route";
 import {LoginComponent} from "./entities/login/login.component";
+import {AdminModule} from "./entities/admin/admin.module";
 
 const routes: Routes = []
 
@@ -16,6 +17,11 @@ const LAYOUT_ROUTES = [sidebarRoute];
     {
       path: 'cops',
       loadChildren: () => import('./entities/cop/cop.module').then(m => m.CopModule)
+
+    },
+    {
+      path: 'admins',
+      loadChildren: () => import('./entities/admin/admin.module').then(m => m.AdminModule)
 
     },
     {

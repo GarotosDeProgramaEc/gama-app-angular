@@ -1,4 +1,4 @@
-import {ApiService} from "../entities/model/api-response.model";
+import {ApiService} from "../entities/model/user-api-response.model";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../entities/model/user.model";
 import {Injectable} from "@angular/core";
@@ -14,6 +14,10 @@ export class CopService extends ApiService<User> {
   }
 
   protected getPath(): string {
-    return 'users/cop';
+    return 'cop';
+  }
+
+  protected getRole(): string {
+    return 'Cop';
   }
 }

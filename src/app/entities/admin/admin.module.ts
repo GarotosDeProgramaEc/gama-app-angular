@@ -9,25 +9,25 @@ import {ReactiveFormsModule} from "@angular/forms";
 import localePt from '@angular/common/locales/pt';
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import {NgSelectModule} from "@ng-select/ng-select";
+import {AdminComponent} from "./admin.component";
+import {AdminRoutingModule} from "./admin-routing.module";
+import {AdminUpdateComponent} from "./admin-update.component";
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import {CopComponent} from "./cop.component";
-import {CopUpdateComponent} from "./cop-update.component";
-import {CopDetailComponent} from "./cop-detail.component";
-import {CopRoutingModule} from "./cop-routing.module";
+import {AdminDetailComponent} from "./admin-detail.component";
 registerLocaleData(localePt);
 
 
 @NgModule({
-  declarations: [CopComponent,
-    CopUpdateComponent,
-    CopDetailComponent
+  declarations: [AdminComponent,
+    AdminUpdateComponent,
+    AdminDetailComponent
   ],
   imports: [
     CommonModule,
     NgbPaginationModule,
     NgbAccordionModule,
     ReactiveFormsModule,
-    CopRoutingModule,
+    AdminRoutingModule,
     NgbDatepickerModule,
     FontAwesomeModule,
     CurrencyMaskModule,
@@ -39,5 +39,5 @@ registerLocaleData(localePt);
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
-export class CopModule {
+export class AdminModule {
 }

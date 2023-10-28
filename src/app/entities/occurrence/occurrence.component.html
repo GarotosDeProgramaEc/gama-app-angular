@@ -1,34 +1,52 @@
 <div class="component-header">
-  <h2>Ocorrências</h2>
+  <h2>Ocorrência</h2>
 </div>
 
 <div class="container">
 
+  <div class="btn-header mb-4">
+    <button (click)="new()" class="btn-primary btn">Adicionar</button>
+  </div>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Ocorrência</th>
-      <th scope="col">Tipo</th>
-      <th scope="col">Urgência</th>
+      <th soccurrencee="col">#</th>
+      <th soccurrencee="col">Nome</th>
+      <th soccurrencee="col">Descrição</th>
+      <th soccurrencee="col">Localização</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let country of occurrences; index as i">
-      <th scope="row">{{ i + 1 }}</th>
+    <tr *ngFor="let occurrence of occurrences; index as i">
+      <th soccurrencee="row">{{ i + 1 }}</th>
       <td>
-        teste
+        {{occurrence.name}}
       </td>
-      <td>teste</td>
-      <td>teste</td>
+      <td>{{occurrence.description}}</td>
+      <td>{{occurrence.location}}</td>
+      <td>
+        <button type="button" class="btn btn-primary"><fa-icon icon="eye"></fa-icon></button>
+        <button type="button" class="btn btn-success"><fa-icon icon="edit"></fa-icon></button>
+        <button type="button" class="btn btn-danger"><fa-icon icon="trash-alt"></fa-icon></button>
+      </td>
     </tr>
 
     </tbody>
 
   </table>
+  <ngb-pagination
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="occurrences.length"></ngb-pagination>
   <p *ngIf="!occurrences?.length">
     <ngb-alert [dismissible]="false">
       <strong>Não há dados cadastrados</strong>
     </ngb-alert>
   </p>
+
+  <div>
+    <a (click)="previousPage()">Anterior</a>
+    <a (click)="nextPage()">Próxima</a>
+  </div>
+
 </div>

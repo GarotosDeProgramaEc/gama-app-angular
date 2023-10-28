@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {FormBuilder, NgForm, Validators} from "@angular/forms";
-import {Cop} from "../model/cop.model";
+import {ActivatedRoute, Router} from "@angular/router";
+import {User} from "../model/user.model";
 import {CopService} from "../../service/cop.service";
 
 @Component({
@@ -9,11 +10,32 @@ import {CopService} from "../../service/cop.service";
   styleUrls: ['./cop.component.scss']
 })
 export class CopUpdateComponent {
+  cop: any;
 
-  constructor(private fb: FormBuilder, private copService: CopService) {
+  constructor(private fb: FormBuilder, private copService: CopService, private router: Router, private route: ActivatedRoute) {
+    this.cop = this.route.snapshot.data['cop'];
+
+  }
+
+  ngOnInit() {
+    this.cop = this.route.snapshot.data['cop'];
+
+    if (this.cop) {
+      this.editForm.get((['id']))?.setValue(this.cop.id)
+      this.editForm.get((['username']))?.setValue(this.cop.username)
+      this.editForm.get((['firstName']))?.setValue(this.cop.firstName)
+      this.editForm.get((['lastName']))?.setValue(this.cop.lastName)
+      this.editForm.get((['documentNumber']))?.setValue(this.cop.documentNumber)
+      this.editForm.get((['password']))?.setValue(this.cop.password)
+      this.editForm.get((['email']))?.setValue(this.cop.email)
+      this.editForm.get((['email']))?.disable()
+      this.editForm.get((['username']))?.disable()
+      this.editForm.get((['password']))?.disable()
+    }
   }
 
   editForm = this.fb.group({
+    id: [{value: null, disabled: true}],
     username: ['', [Validators.required, Validators.maxLength(100)]],
     firstName: ['', [Validators.required, Validators.maxLength(100)]],
     lastName: [''],
@@ -27,10 +49,28 @@ export class CopUpdateComponent {
 
 
   create(): void {
+
     const cop = {
       ...this.editForm.value
-    } as Cop
+    } as User
 
-    this.copService.create(cop).subscribe()
+    if (cop && this.cop?.id) {
+      this.copService.update(this.cop.id, cop).subscribe(res => {
+        this.router.navigate(['cops'])
+
+      })
+    } else {
+      this.copService.create(cop).subscribe(res => {
+        this.router.navigate(['cops'])
+
+      })
+    }
+
+
+
+  }
+
+  cancel() {
+    this.router.navigate(['/cops'])
   }
 }

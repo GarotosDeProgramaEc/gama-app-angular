@@ -11,13 +11,14 @@ import {CurrencyMaskModule} from "ng2-currency-mask";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {ViolationComponent} from "./violation.component";
 import {ViolationRoutingModule} from "./violation-routing.module";
+import {ViolationUpdateComponent} from "./violation-update.component";
 
 registerLocaleData(localePt);
 
 
 @NgModule({
-  declarations: [ViolationComponent
-
+  declarations: [ViolationComponent,
+    ViolationUpdateComponent
   ],
   imports: [
     CommonModule,

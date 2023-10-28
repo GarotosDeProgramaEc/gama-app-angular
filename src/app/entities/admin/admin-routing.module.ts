@@ -1,16 +1,17 @@
 import {Injectable, NgModule} from '@angular/core';
 import {Routes, RouterModule, Resolve, Router, ActivatedRouteSnapshot} from '@angular/router';
+import {AdminComponent} from "./admin.component";
 import {AuthGuard} from "../../service/auth-guard.service";
+import {AdminUpdateComponent} from "./admin-update.component";
 import {User} from "../model/user.model";
+import {AdminService} from "../../service/admin.service";
 import {EMPTY, flatMap, Observable, of} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {UserService} from "../../service/user.service";
-import {CopUpdateComponent} from "./cop-update.component";
-import {CopDetailComponent} from "./cop-detail.component";
-import {CopComponent} from "./cop.component";
+import {AdminDetailComponent} from "./admin-detail.component";
 
 @Injectable({providedIn: 'root'})
-export class copResolve implements Resolve<User> {
+export class AdminResolve implements Resolve<User> {
   constructor(private service: UserService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<User> | Observable<never> {
@@ -21,27 +22,27 @@ export class copResolve implements Resolve<User> {
 }
 
 const routes: Routes = [
-  { path: '', component: CopComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  { path: '', component: AdminComponent, pathMatch: 'full', canActivate: [AuthGuard]},
 
   { path: ':id/edit',
-    component: CopUpdateComponent,
+    component: AdminUpdateComponent,
     resolve: {
-      cop: copResolve
+      admin: AdminResolve
     },
     pathMatch: 'full', canActivate: [AuthGuard]},
 
   { path: ':id/view',
-    component: CopDetailComponent,
+    component: AdminDetailComponent,
     resolve: {
-      cop: copResolve
+      admin: AdminResolve
     },
     pathMatch: 'full', canActivate: [AuthGuard]},
 
-  { path: 'new', component: CopUpdateComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  { path: 'new', component: AdminUpdateComponent, pathMatch: 'full', canActivate: [AuthGuard]},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CopRoutingModule { }
+export class AdminRoutingModule { }

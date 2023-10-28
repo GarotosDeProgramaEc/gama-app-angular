@@ -11,13 +11,14 @@ import {CurrencyMaskModule} from "ng2-currency-mask";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {FineComponent} from "./fine.component";
 import {FineRoutingModule} from "./fine-routing.module";
+import {FineUpdateComponent} from "./fine-update.component";
 
 registerLocaleData(localePt);
 
 
 @NgModule({
-  declarations: [FineComponent
-
+  declarations: [FineComponent,
+    FineUpdateComponent
   ],
   imports: [
     CommonModule,

@@ -11,16 +11,18 @@ import {CurrencyMaskModule} from "ng2-currency-mask";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {OccurrenceComponent} from "./occurrence.component";
 import {OccurrenceRoutingModule} from "./occurrence-routing.module";
-
+import {OccurrenceUpdateComponent} from "./occurrence-update.component";
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 registerLocaleData(localePt);
 
 
 @NgModule({
-  declarations: [OccurrenceComponent
-
+  declarations: [OccurrenceComponent,
+    OccurrenceUpdateComponent
   ],
   imports: [
     CommonModule,
+    NgbPaginationModule,
     NgbAccordionModule,
     ReactiveFormsModule,
     OccurrenceRoutingModule,

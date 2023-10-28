@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import {catchError, mapTo, tap} from 'rxjs/operators';
 import {Cop} from "../entities/model/cop.model";
 import {Router} from "@angular/router";
+import {constants} from "../../constants";
 
 interface User {
   username: string;
@@ -27,7 +28,8 @@ export class AuthService {
   }
 
   login(cop: Cop): Observable<boolean> {
-    return this.http.post<any>('http://localhost:8001/v1/auth/token', cop)
+    return this.http.post<any>('\n' +
+      constants.API_URL_PREFFIX + '/auth/token', cop)
       .pipe(
         tap(response => {
           if (!response.token) {

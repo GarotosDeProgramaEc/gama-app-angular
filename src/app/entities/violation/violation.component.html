@@ -4,23 +4,29 @@
 
 <div class="container">
 
+  <div class="btn-header mb-4">
+    <button (click)="new()" class="btn-primary btn">Adicionar</button>
+  </div>
   <table class="table table-striped">
     <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Ocorrência</th>
-      <th scope="col">Tipo</th>
-      <th scope="col">Urgência</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Código</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let country of violations; index as i">
+    <tr *ngFor="let violation of violations; index as i">
       <th scope="row">{{ i + 1 }}</th>
       <td>
-        teste
+        {{violation.name}}
       </td>
-      <td>teste</td>
-      <td>teste</td>
+      <td>{{violation.code}}</td>
+      <td>
+        <button type="button" class="btn btn-primary"><fa-icon icon="eye"></fa-icon></button>
+        <button type="button" class="btn btn-success"><fa-icon icon="edit"></fa-icon></button>
+        <button type="button" class="btn btn-danger"><fa-icon icon="trash-alt"></fa-icon></button>
+      </td>
     </tr>
 
     </tbody>
@@ -31,4 +37,18 @@
       <strong>Não há dados cadastrados</strong>
     </ngb-alert>
   </p>
+
+
+
+  <div *ngIf="totalItems > 0" class="card-header" [ngClass]="{'with-pagination': violations}">
+    <div class="d-flex justify-content-between">
+      <span *ngIf="!violations.length" jhiTranslate="global.empty.list.title"></span>
+      <div>
+        Mostrando {{violations.length }} de {{totalItems}}
+      </div>
+      <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="pageSize" [maxSize]="5"
+                      [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)" size="sm"></ngb-pagination>
+    </div>
+  </div>
+
 </div>

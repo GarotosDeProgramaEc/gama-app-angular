@@ -1,41 +1,41 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {AdminService} from "../../service/admin.service";
 import {User} from "../model/user.model";
 import paginatedApiResponse from "../model/user-api-response.model";
 import {GenericModalService} from "../../shared/modal/generic-modal.service";
-import {CopService} from "../../service/cop.service";
 
 @Component({
-  selector: 'app-cop',
-  templateUrl: './cop.component.html',
-  styleUrls: ['./cop.component.scss']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
-export class CopComponent {
+export class AdminComponent {
   page = 1
   totalItems = 1
   pageSize = 10
-  cops: User[] = []
+  admins: User[] = []
 
-  constructor(public router: Router, public copService: CopService, public genericModalService: GenericModalService) {
+  constructor(public router: Router, public adminService: AdminService, public genericModalService: GenericModalService) {
   }
 
   confirmDelete(user: User) {
-    this.genericModalService.show("Remover policial", "Tem certeza que deseja desativar o policial?", () => {
+    this.genericModalService.show("Remover administrador", "Tem certeza que deseja desativar o administrador?", () => {
       this.delete(user)
     })
   }
 
   new() {
-    this.router.navigate(['cops/new'])
+    this.router.navigate(['admins/new'])
   }
 
   goToEdit(user: User) {
-    this.router.navigate(['cops', user.id, 'edit'])
+    this.router.navigate(['admins', user.id, 'edit'])
 
   }
 
   goToView(user: User) {
-    this.router.navigate(['cops', user.id, 'view'])
+    this.router.navigate(['admins', user.id, 'view'])
 
   }
 
@@ -45,8 +45,8 @@ export class CopComponent {
 
   loadAll() {
     // @ts-ignore
-    this.copService.getAll({page: this.page}).subscribe((res: paginatedApiResponse<User>) => {
-      this.cops = res?.results || []
+    this.adminService.getAll({page: this.page}).subscribe((res: paginatedApiResponse<User>) => {
+      this.admins = res?.results || []
       this.page = res?.pageNumber || 0
       this.totalItems = res?.count || 0
       this.pageSize = res?.size || 0
@@ -55,7 +55,7 @@ export class CopComponent {
 
   delete(user: User) {
     // @ts-ignore
-    this.copService.delete(user.id).subscribe((res: paginatedApiResponse<User>) => {
+    this.adminService.delete(user.id).subscribe((res: paginatedApiResponse<User>) => {
       this.loadAll();
     })
   }

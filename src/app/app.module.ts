@@ -21,6 +21,7 @@ import {LoginComponent} from "./entities/login/login.component";
 import {TokenInterceptor} from "./service/token-interceptor.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
+import {GenericModalComponent} from "./shared/modal/generic-modal.component";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -30,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     LoginComponent,
+    GenericModalComponent,
     SidebarComponent
   ],
   imports: [
