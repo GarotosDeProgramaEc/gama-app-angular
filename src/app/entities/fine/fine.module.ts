@@ -10,18 +10,21 @@ import localePt from '@angular/common/locales/pt';
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {FineComponent} from "./fine.component";
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {FineDetailComponent} from "./fine-detail.component";
 import {FineRoutingModule} from "./fine-routing.module";
-import {FineUpdateComponent} from "./fine-update.component";
-
+import {DateMomentPipe} from "./date-moment.pipe";
 registerLocaleData(localePt);
 
 
 @NgModule({
   declarations: [FineComponent,
-    FineUpdateComponent
+    FineDetailComponent,
+    DateMomentPipe
   ],
   imports: [
     CommonModule,
+    NgbPaginationModule,
     NgbAccordionModule,
     ReactiveFormsModule,
     FineRoutingModule,

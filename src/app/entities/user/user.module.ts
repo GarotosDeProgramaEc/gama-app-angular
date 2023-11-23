@@ -10,18 +10,23 @@ import localePt from '@angular/common/locales/pt';
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {UserComponent} from "./user.component";
-import {UserRoutingModule} from "./user-routing.module";
 import {UserUpdateComponent} from "./user-update.component";
-
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {UserDetailComponent} from "./user-detail.component";
+import {UserRoutingModule} from "./user-routing.module";
+import {NgxMaskDirective, NgxMaskPipe} from "ngx-mask";
 registerLocaleData(localePt);
 
 
 @NgModule({
   declarations: [UserComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    UserDetailComponent
   ],
   imports: [
     CommonModule,
+    NgxMaskDirective, NgxMaskPipe,
+    NgbPaginationModule,
     NgbAccordionModule,
     ReactiveFormsModule,
     UserRoutingModule,

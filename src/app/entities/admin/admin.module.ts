@@ -14,6 +14,7 @@ import {AdminRoutingModule} from "./admin-routing.module";
 import {AdminUpdateComponent} from "./admin-update.component";
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import {AdminDetailComponent} from "./admin-detail.component";
+import {NgxMaskDirective, NgxMaskPipe, provideNgxMask} from "ngx-mask";
 registerLocaleData(localePt);
 
 
@@ -23,6 +24,7 @@ registerLocaleData(localePt);
     AdminDetailComponent
   ],
   imports: [
+    NgxMaskDirective, NgxMaskPipe,
     CommonModule,
     NgbPaginationModule,
     NgbAccordionModule,
@@ -36,6 +38,7 @@ registerLocaleData(localePt);
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
+    provideNgxMask(),
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })

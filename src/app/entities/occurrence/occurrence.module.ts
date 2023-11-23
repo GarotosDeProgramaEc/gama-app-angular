@@ -9,16 +9,16 @@ import {ReactiveFormsModule} from "@angular/forms";
 import localePt from '@angular/common/locales/pt';
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import {NgSelectModule} from "@ng-select/ng-select";
-import {OccurrenceComponent} from "./occurrence.component";
-import {OccurrenceRoutingModule} from "./occurrence-routing.module";
-import {OccurrenceUpdateComponent} from "./occurrence-update.component";
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {OccurrenceRoutingModule} from "./occurrence-routing.module";
+import {OccurrenceComponent} from "./occurrence.component";
+import {OccurrenceDetailComponent} from "./occurrence-detail.component";
 registerLocaleData(localePt);
 
 
 @NgModule({
   declarations: [OccurrenceComponent,
-    OccurrenceUpdateComponent
+    OccurrenceDetailComponent
   ],
   imports: [
     CommonModule,

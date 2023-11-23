@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {ViolationService} from "../../service/violation.service";
 import {Violation} from "../model/violation.model";
+import paginatedApiResponse from "../model/violation-api-response.model";
+import {GenericModalService} from "../../shared/modal/generic-modal.service";
 
 @Component({
   selector: 'app-violation',
@@ -14,11 +16,27 @@ export class ViolationComponent {
   pageSize = 10
   violations: Violation[] = []
 
-  constructor(public router: Router, public violationService: ViolationService) {
+  constructor(public router: Router, public violationService: ViolationService, public genericModalService: GenericModalService) {
+  }
+
+  confirmDelete(violation: Violation) {
+    this.genericModalService.show("Remover violationistrador", "Tem certeza que deseja desativar o violationistrador?", () => {
+      this.delete(violation)
+    })
   }
 
   new() {
     this.router.navigate(['violations/new'])
+  }
+
+  goToEdit(violation: Violation) {
+    this.router.navigate(['violations', violation.id, 'edit'])
+
+  }
+
+  goToView(violation: Violation) {
+    this.router.navigate(['violations', violation.id, 'view'])
+
   }
 
   ngOnInit(): void {
@@ -27,11 +45,15 @@ export class ViolationComponent {
 
   loadAll() {
     // @ts-ignore
-    this.violationService.getAll({page: this.page}).subscribe((res: paginatedApiResponse<Violation>) => {
-      this.violations = res?.results || []
-      this.page = res?.pageNumber || 0
-      this.totalItems = res?.count || 0
-      this.pageSize = res?.size || 0
+    this.violationService.getAll({page: this.page}).subscribe((res: Violation[]) => {
+      this.violations = res || []
+    })
+  }
+
+  delete(violation: Violation) {
+    // @ts-ignore
+    this.violationService.delete(violation.id).subscribe((res: paginatedApiResponse<Violation>) => {
+      this.loadAll();
     })
   }
 
@@ -45,6 +67,8 @@ export class ViolationComponent {
     this.loadAll()
 
   }
+
+
 
   loadPage(page: number) {
     this.page = page

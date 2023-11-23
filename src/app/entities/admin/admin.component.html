@@ -11,20 +11,23 @@
     <thead>
     <tr>
       <th sadmine="col">#</th>
+      <th sadmine="col">Ativo</th>
       <th sadmine="col">Nome</th>
       <th sadmine="col">Sobrenome</th>
-      <th sadmine="col">E-mail</th>
       <th sadmine="col">Açoes</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let admin of admins; index as i">
-      <th sadmine="row">{{ i + 1 }}</th>
+      <th scope="row">{{ admin.id }}</th>
+      <td>
+        <fa-icon class="danger" *ngIf="!admin.active" icon="close"></fa-icon>
+        <fa-icon class="success" *ngIf="admin.active" icon="check"></fa-icon>
+      </td>
       <td>
         {{admin.firstName}}
       </td>
       <td>{{admin.lastName}}</td>
-      <td>{{admin.email}}</td>
       <td>
         <button (click)="goToView(admin)" type="button" class="btn btn-primary"><fa-icon icon="eye"></fa-icon></button>
         <button (click)="goToEdit(admin)" type="button" class="btn btn-success"><fa-icon icon="edit"></fa-icon></button>

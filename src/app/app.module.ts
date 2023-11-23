@@ -22,6 +22,8 @@ import {TokenInterceptor} from "./service/token-interceptor.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {GenericModalComponent} from "./shared/modal/generic-modal.component";
+import {DateMomentPipe} from "./shared/date-moment.pipe";
+import {NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask, provideNgxMask} from "ngx-mask";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -32,10 +34,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     LoginComponent,
     GenericModalComponent,
-    SidebarComponent
+    SidebarComponent,
+    DateMomentPipe
   ],
   imports: [
     BrowserModule,
+    NgxMaskDirective, NgxMaskPipe,
     ReactiveFormsModule,
     AppRoutingModule,
     FontAwesomeModule,
@@ -53,8 +57,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     NgbAlertModule
   ],
+  exports: [DateMomentPipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [TranslationService,
+    provideEnvironmentNgxMask(),
+    provideNgxMask(),
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

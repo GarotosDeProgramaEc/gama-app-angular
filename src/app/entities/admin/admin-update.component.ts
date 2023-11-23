@@ -3,6 +3,7 @@ import {FormBuilder, NgForm, Validators} from "@angular/forms";
 import {AdminService} from "../../service/admin.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../model/user.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-admin-update',
@@ -12,7 +13,7 @@ import {User} from "../model/user.model";
 export class AdminUpdateComponent {
   admin: any;
 
-  constructor(private fb: FormBuilder, private adminService: AdminService, private router: Router, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private adminService: AdminService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) {
     this.admin = this.route.snapshot.data['admin'];
 
   }
@@ -58,11 +59,15 @@ export class AdminUpdateComponent {
       this.adminService.update(this.admin.id, admin).subscribe(res => {
         this.router.navigate(['admins'])
 
+      }, () => {
+        this.toastr.error("Dados invalidos para cadastro", "Erro de validação")
       })
     } else {
       this.adminService.create(admin).subscribe(res => {
         this.router.navigate(['admins'])
 
+      }, () => {
+        this.toastr.error("Dados invalidos para cadastro", "Erro de validação")
       })
     }
 

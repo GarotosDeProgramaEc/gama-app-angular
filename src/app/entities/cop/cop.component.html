@@ -11,20 +11,23 @@
     <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Ativo</th>
       <th scope="col">Nome</th>
       <th scope="col">Sobrenome</th>
-      <th scope="col">E-mail</th>
       <th scope="col">Açoes</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let cop of cops; index as i">
-      <th scope="row">{{ i + 1 }}</th>
+      <th scope="row">{{ cop.id }}</th>
+      <td>
+        <fa-icon class="danger" *ngIf="!cop.active" icon="close"></fa-icon>
+        <fa-icon class="success" *ngIf="cop.active" icon="check"></fa-icon>
+      </td>
       <td>
         {{cop.firstName}}
       </td>
       <td>{{cop.lastName}}</td>
-      <td>{{cop.email}}</td>
       <td>
         <button (click)="goToView(cop)" type="button" class="btn btn-primary"><fa-icon icon="eye"></fa-icon></button>
         <button (click)="goToEdit(cop)" type="button" class="btn btn-success"><fa-icon icon="edit"></fa-icon></button>

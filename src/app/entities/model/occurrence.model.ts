@@ -6,9 +6,9 @@ export class Occurrence {
     public location?: string,
     public name?: string,
     public description?: string,
-    public occurrenceStatusId?: string,
-    public occurrenceTypeId?: number,
-    public occurrenceUrgencyLevelId ?: number,
+    public status?: string,
+    public occurrenceType?: string,
+    public occurrenceUrgencyLevel ?: string,
     public active  ?: boolean
   ) {
   }

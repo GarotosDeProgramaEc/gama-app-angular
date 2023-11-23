@@ -22,7 +22,7 @@ interface paginatedApiResponse<T> {
 export class ViolationService {
 
   private baseUrl = constants.API_URL_PREFFIX;
-  private basePrefix = 'violations';
+  private basePrefix = 'traffic-violations';
 
 
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {
@@ -40,7 +40,7 @@ export class ViolationService {
 
   // Método para criar um novo objeto
   create(obj: Violation): Observable<HttpResponse<Violation>> {
-    return this.http.post<HttpResponse<Violation>>(`${this.baseUrl}/${this.basePrefix}/${this.basePrefix}`, obj, {observe: 'response'})
+    return this.http.post<HttpResponse<Violation>>(`${this.baseUrl}/${this.basePrefix}`, obj, {observe: 'response'})
       // @ts-ignore
       .pipe(tap((res: HttpResponse<Violation>) => {
         if (res.status === 200) {

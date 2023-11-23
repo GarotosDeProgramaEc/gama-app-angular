@@ -18,6 +18,6 @@ export class UserService extends ApiService<User> {
   }
 
   protected getRole(): string {
-    return 'Citzen';
+    return 'Citizen';
   }
 }

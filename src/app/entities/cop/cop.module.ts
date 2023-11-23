@@ -14,6 +14,7 @@ import {CopComponent} from "./cop.component";
 import {CopUpdateComponent} from "./cop-update.component";
 import {CopDetailComponent} from "./cop-detail.component";
 import {CopRoutingModule} from "./cop-routing.module";
+import {NgxMaskDirective, NgxMaskPipe} from "ngx-mask";
 registerLocaleData(localePt);
 
 
@@ -24,6 +25,7 @@ registerLocaleData(localePt);
   ],
   imports: [
     CommonModule,
+    NgxMaskDirective, NgxMaskPipe,
     NgbPaginationModule,
     NgbAccordionModule,
     ReactiveFormsModule,

@@ -3,6 +3,7 @@ import {FormBuilder, NgForm, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../model/user.model";
 import {CopService} from "../../service/cop.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-cop-update',
@@ -12,7 +13,7 @@ import {CopService} from "../../service/cop.service";
 export class CopUpdateComponent {
   cop: any;
 
-  constructor(private fb: FormBuilder, private copService: CopService, private router: Router, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private copService: CopService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) {
     this.cop = this.route.snapshot.data['cop'];
 
   }
@@ -58,11 +59,15 @@ export class CopUpdateComponent {
       this.copService.update(this.cop.id, cop).subscribe(res => {
         this.router.navigate(['cops'])
 
+      }, () => {
+        this.toastr.error("Dados invalidos para cadastro", "Erro de validação")
       })
     } else {
       this.copService.create(cop).subscribe(res => {
         this.router.navigate(['cops'])
 
+      }, () => {
+        this.toastr.error("Dados invalidos para cadastro", "Erro de validação")
       })
     }
 

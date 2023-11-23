@@ -38,8 +38,8 @@
                type="password" class="form-control" id="password">
       </div>
       <div class="form-group col-6">
-        <label for="documentNumber">Documento</label>
-        <input formControlName="documentNumber" type="text" class="form-control" id="documentNumber">
+        <label for="documentNumber">CPF</label>
+        <input [mask]="'000.000.000-00'" formControlName="documentNumber" type="text" class="form-control" id="documentNumber">
       </div>
 
     </div>

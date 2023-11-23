@@ -18,7 +18,7 @@ export default interface paginatedApiResponse<T> {
 export abstract class ApiService<T> {
 
   private baseUrl = constants.API_URL_PREFFIX;
-  private basePrefix = 'users';
+  private basePrefix = 'violations';
 
   constructor(private http: HttpClient, private toastr: ToastrService) {
   }
@@ -39,7 +39,7 @@ export abstract class ApiService<T> {
       // @ts-ignore
       .pipe(tap((res: HttpResponse<T>) => {
         if (res.status === 200) {
-          this.toastr.success("Cadastro efetuado com sucesso", "200")
+          this.toastr.show("Cadastro efetuado com sucesso", "200")
         }
       }))
   }

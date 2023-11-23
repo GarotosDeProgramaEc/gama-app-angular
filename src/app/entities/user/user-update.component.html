@@ -3,9 +3,18 @@
 </div>
 
 <div class="container">
+
   <form #form="ngForm" name="editForm" role="form" (ngSubmit)="create()" novalidate [formGroup]="editForm"
         class="mt-2">
+    <div class="form-group mt-4 col-6">
+      <button class="btn btn-danger" (click)="cancel()" type="button"><fa-icon icon="close"></fa-icon>&nbsp; Cancelar</button>
+      <button class="btn btn-primary" type="submit"><fa-icon icon="plus"></fa-icon>&nbsp; Adicionar</button>
+    </div>
     <div class="row">
+      <div *ngIf="user?.id" class="form-group col-6">
+        <label for="id">Id</label>
+        <input formControlName="id" type="text" class="form-control" id="id">
+      </div>
       <div class="form-group col-6">
         <label for="username">Usuário</label>
         <input formControlName="username" type="text" class="form-control" id="username">
@@ -29,12 +38,10 @@
                type="password" class="form-control" id="password">
       </div>
       <div class="form-group col-6">
-        <label for="documentNumber">Documento</label>
-        <input formControlName="documentNumber" type="text" class="form-control" id="documentNumber">
+        <label for="documentNumber">CPF</label>
+        <input [mask]="'000.000.000-00'" formControlName="documentNumber" type="text" class="form-control" id="documentNumber">
       </div>
-      <div class="form-group col-6">
-        <button class="btn btn-primary" type="submit">Adicionar</button>
-      </div>
+
     </div>
   </form>
 </div>

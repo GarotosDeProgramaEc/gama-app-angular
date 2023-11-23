@@ -10,18 +10,21 @@ import localePt from '@angular/common/locales/pt';
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {ViolationComponent} from "./violation.component";
-import {ViolationRoutingModule} from "./violation-routing.module";
 import {ViolationUpdateComponent} from "./violation-update.component";
-
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {ViolationDetailComponent} from "./violation-detail.component";
+import {ViolationRoutingModule} from "./violation-routing.module";
 registerLocaleData(localePt);
 
 
 @NgModule({
   declarations: [ViolationComponent,
-    ViolationUpdateComponent
+    ViolationUpdateComponent,
+    ViolationDetailComponent
   ],
   imports: [
     CommonModule,
+    NgbPaginationModule,
     NgbAccordionModule,
     ReactiveFormsModule,
     ViolationRoutingModule,

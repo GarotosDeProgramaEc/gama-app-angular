@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
-import {catchError, mapTo, tap} from 'rxjs/operators';
-import {Cop} from "../entities/model/cop.model";
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
 import {Router} from "@angular/router";
 import {Fine} from "../entities/model/fine.model";
 import {ToastrService} from "ngx-toastr";
@@ -14,23 +13,27 @@ interface paginatedApiResponse<T> {
   results: T[];
 }
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class FineService {
 
   private baseUrl = constants.API_URL_PREFFIX;
-  private basePrefix = 'fines';
-
+  private basePrefix = 'traffic-fines';
 
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {
   }
 
   // Método para listar todos os objetos
   getAll(req?: any): Observable<HttpResponse<paginatedApiResponse<Fine>>> {
-    return this.http.get<HttpResponse<paginatedApiResponse<Fine>>>(`${this.baseUrl}/${this.basePrefix}`, {params: {pageNumber: req.page}})
+    return this.http.get<HttpResponse<paginatedApiResponse<Fine>>>(`${this.baseUrl}/${this.basePrefix}`, {
+      params: {
+        pageNumber: req.page,
+        createdSince: req.createdSince,
+      ...(req.licensePlate ? {licensePlate: req.licensePlate} : {}),
+        createdUntil: req.createdUntil
+      }
+    })
   }
 
   // Método para buscar um objeto por ID
@@ -58,6 +61,5 @@ export class FineService {
   delete(id: number): Observable<Fine> {
     return this.http.delete<Fine>(`${this.baseUrl}/${this.basePrefix}/${id}`);
   }
-
 
 }

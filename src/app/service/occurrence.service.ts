@@ -30,7 +30,13 @@ export class OccurrenceService {
 
   // Método para listar todos os objetos
   getAll(req?: any): Observable<HttpResponse<paginatedApiResponse<Occurrence>>> {
-    return this.http.get<HttpResponse<paginatedApiResponse<Occurrence>>>(`${this.baseUrl}/${this.basePrefix}`, {params: {pageNumber: req.page}})
+    return this.http.get<HttpResponse<paginatedApiResponse<Occurrence>>>(`${this.baseUrl}/${this.basePrefix}`, {
+      params: {
+        pageNumber: req.page,
+        createdSince: req.createdSince,
+        createdUntil: req.createdUntil
+      }
+    })
   }
 
   // Método para buscar um objeto por ID
